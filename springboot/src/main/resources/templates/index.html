@@ -1,0 +1,76 @@
+<html lang="en" xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/main.html">
+
+
+<div layout:fragment="mainContent">
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-sm mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        + Add New Task
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New Task</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 mx-auto">
+                            <form th:action="@{'/additem'}" method="post">
+                                <div class="mt-2">
+                                    <label>TASK NAME :</label>
+                                    <input type="text" class="form-control mt-2" required name="name">
+                                </div>
+                                <div class="mt-2">
+                                    <label>TASK DEADLINE DATE :</label>
+                                    <input type="text" class="form-control mt-2" required name="date">
+                                </div>
+                                <div class="mt-2">
+                                    <label>COMPLETED :</label>
+                                    <input type="text" class="form-control mt-2" required name="completed">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-primary">Add Task</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <table class="table table-responsive-lg table-hover">
+                <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>DATE</th>
+                    <th>IS COMPLETED</th>
+                    <th>DETAILS</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each = "it : ${tovary}">
+                    <td th:text="${it.getId()}"></td>
+                    <td th:text="${it.getName()}"></td>
+                    <td th:text="${it.getDate()}"></td>
+                    <td th:text="${it.getCompleted()}"></td>
+                    <td width="10%">
+                        <a th:href="@{'/details/'+${it.getId()}}" class="btn btn-primary btn-sm">DETAILS</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+</div>
+</div>
+</html>
+

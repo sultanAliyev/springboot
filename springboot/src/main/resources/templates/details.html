@@ -1,0 +1,39 @@
+<html lang="en" xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/main.html" >
+<div layout:fragment="mainContent">
+    <div class="row mt-5">
+        <div class="col-6 mx-auto">
+            <form th:action="@{'/savetask'}" method="post" th:if = "${tasks!=null}">
+                <input type="hidden" name="id" th:value="${tasks.getId()}">
+                <div class="mt-2">
+                    <label for="name">
+                        NAME:
+                    </label>
+                    <input type="text" class="form-control mt-2" required id = "name" name="name" th:value="${tasks.getName()}">
+                </div>
+                <div class="mt-2">
+                    <label for="deadlineDate">
+                        TASK DEADLINE DATE:
+                    </label>
+                    <input type="text" class="form-control mt-2" required id = "deadlineDate" name="deadlineDate" th:value="${tasks.getDate()}">
+                </div>
+                <div class="mt-2">
+                    <label for="isCompleted">
+                        COMPLETED:
+                    </label>
+                    <input type="text" class="form-control mt-2" required id = "isCompleted" name="isCompleted" th:value="${tasks.getCompleted()}">
+                </div>
+                <div class="mt-2">
+                    <button type="submit" name="action" value="save" class = "btn btn-success">SAVE ITEM</button>
+                    <button type="submit" name="action" value="delete" class = "btn btn-danger">DELETE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</html>
+
+
+
+
+
